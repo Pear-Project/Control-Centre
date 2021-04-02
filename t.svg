@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="396" height="476.994" viewBox="0 0 396 476.994">
+  <g id="Window" transform="translate(7 8.993)">
+    <path id="Popover" d="M16,475.866a16,16,0,0,1-16-16v-432a16,16,0,0,1,16-16H236.073L249.647-.6a2,2,0,0,1,2.705,0l13.574,12.467H380a16,16,0,0,1,16,16v432a16,16,0,0,1-16,16Z" transform="translate(-7 -7.866)" fill="rgba(0,0,0,0.4)"/>
+    <g id="Widget" transform="translate(12 336)">
+      <rect id="Frame" width="372" height="56" rx="12" fill="rgba(235,235,245,0.18)"/>
+      <rect id="Circle" width="32" height="32" rx="16" transform="translate(328 12)" fill="rgba(235,235,245,0.18)"/>
+      <rect id="Bounds" width="304" height="32" rx="16" transform="translate(12 12)" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-2" data-name="Widget" transform="translate(12 268)">
+      <rect id="Frame-2" data-name="Frame" width="372" height="56" rx="12" fill="rgba(235,235,245,0.18)"/>
+      <rect id="Bounds-2" data-name="Bounds" width="348" height="32" rx="16" transform="translate(12 12)" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-3" data-name="Widget" transform="translate(298 170)">
+      <rect id="Frame-3" data-name="Frame" width="86" height="86" rx="12" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-4" data-name="Widget" transform="translate(204 170)">
+      <path id="Frame-4" data-name="Frame" d="M12,0H74A12,12,0,0,1,86,12V74A12,12,0,0,1,74,86H12A12,12,0,0,1,0,74V12A12,12,0,0,1,12,0Z" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-5" data-name="Widget" transform="translate(204 76)">
+      <rect id="Frame-5" data-name="Frame" width="180" height="86" rx="12" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-6" data-name="Widget" transform="translate(12 76)">
+      <rect id="Frame-6" data-name="Frame" width="184" height="180" rx="12" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-7" data-name="Widget" transform="translate(284 24)">
+      <path id="Bounds-3" data-name="Bounds" d="M88,40H12A12,12,0,0,1,0,28V12A12,12,0,0,1,12,0H88a12,12,0,0,1,12,12V28A12,12,0,0,1,88,40ZM50,8V32h1V8Z" fill="rgba(235,235,245,0.18)"/>
+    </g>
+    <g id="Widget-8" data-name="Widget" transform="translate(12 24)">
+      <rect id="Frame-7" data-name="Frame" width="264" height="40" rx="12" fill="rgba(235,235,245,0.18)"/>
+    </g>
+  </g>
+</svg>

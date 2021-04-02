@@ -1,0 +1,47 @@
+FMain.class (but this shows only the Graphics Changer module, with nothing else)
+
+Public Sub Form_Open()
+Dim drivers As String 'declare a "driver" string var for storing the driver install status
+Dim xsettings As String 'declare an "xsettings" string for storing the nVidia X Settings install status
+Dim used As String 'declare an "used" string for storing the current used GPU
+
+  Shell "dpkg -l | grep nvidia-settings" To xsettings 'sending command output into xsettings variable for later use
+  Shell "dpkg -l | grep nvidia-driver" To drivers 'sending command output into drivers variable for later use
+  Shell "prime-select query"
+  
+  If drivers = "" Then 'if the app is not installed, the variable will be empty, let's condition that
+    Message("nVidia drivers not detected!", "OK") 'showing a warning if the requirement is unmet
+  Endif 'endig the IF condition
+  If xsettings = "" Then 'if the app is not installed, the variable will be empty, let's condition that
+    Message("'nVidia X Server Settings' is not installed, you will not be able to use Hybrid Graphics!\nYou can install this by typing 'sudo apt intstall nvidia-settings'", "OK") 'showing a warning if the requirement is unmet
+  Endif 'endig the IF condition
+  If used = "intel" Then 'if the INTEL is used as GPU, it will be shown
+    chk_intel.Text = ">"
+  Endif
+  If used = "nvidia" Then 'if the NVIDIA is used as GPU, it will be shown
+    chk_nvidia.Text = ">"
+  Endif
+  
+Public Sub lbl_nvidia_MouseDown()
+    chk_nvidia.Text = ">"
+    chk_intel.Text = " "
+    'Shell "pkexec prime-select nvidia"
+End
+
+Public Sub lbl_intel_MouseDown()
+    chk_intel.Text = ">"
+    chk_nvidia.Text = " "
+    'Shell "pkexec prime-select intel"
+End
+
+Public Sub chk_nvidia_Click()
+      chk_nvidia.Text = ">"
+      chk_intel.Text = " "
+    'Shell "pkexec prime-select nvidia"
+End
+
+Public Sub chk_intel_Click()
+    chk_nvidia.Text = " "
+    chk_intel.Text = ">"
+    'Shell "pkexec prime-select nvidia"
+End
