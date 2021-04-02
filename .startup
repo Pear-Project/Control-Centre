@@ -1,0 +1,16 @@
+FMain
+Control Centre
+0
+0
+11.1.0
+
+gb.image
+gb.gui
+gb.form
+gb.dbus
+gb.settings
+gb.gui.trayicon
+gb.net
+gb.mime
+gb.net.pop3
+
