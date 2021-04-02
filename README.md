@@ -1,5 +1,5 @@
 # Control-Centre
-A nice Control Centre that looks like a normal Control Centre
+A nice Control Centre that looks like macOS Big Sur Control Centre
 
 ## Screenshots :)
 ![Dark mode](Screenshots/dark_centre.png)
@@ -43,4 +43,12 @@ Light mode
    ```sh
    $ sudo dpkg -i <path to downloaded deb file, or drag and drop>
    ```
-   
+   - clone the project
+   ```sh
+   git clone https://github.com/alxb421/Control-Centre.git
+   ```
+   - copy xyz.pearos.control-centre.desktop from the cloned repository to the autostart folder
+   ```sh
+   $ cp -r ~/Control-Centre/xyz.pearos.control-centre.desktop ~/.config/autostart/
+   # this was an example for adding autostart script to KDE based system
+   ```
