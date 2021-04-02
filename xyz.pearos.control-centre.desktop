@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Control Centre
+Comment=nice centre goes brr
+GenericName=control-center
+Icon=icon?
+Categories=Utility;X-SuSE-DesktopUtility;
+Exec=/usr/bin/cnt-centre
+Terminal=false
+Type=Application
+X-DBUS-StartupType=unique
+X-KDE-autostart-phase=1
