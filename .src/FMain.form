@@ -1,0 +1,498 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,52,61)
+  Text = ("pearOS Ctrl. Center")
+  Icon = Picture["touchpad_disabled.png"]
+  Resizable = False
+  Border = False
+  Utility = True
+  Stacking = Window.Above
+  SkipTaskbar = True
+  Transparent = True
+  { mnuTray Menu
+    Text = ("Tray Menu")
+    Visible = False
+    { Close_Application Menu
+      Text = ("Quit")
+    }
+    { mnuOpen Menu
+      Text = ("Show Control Centre")
+    }
+    { Menu1 Menu
+    }
+    { mnuAbout Menu
+      Text = ("About")
+    }
+  }
+  { Tray #TrayIcon
+    #MoveScaled(80,53)
+    PopupMenu = "mnuTray"
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(2,1,24,24)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Cover
+  }
+  { PictureBox10 PictureBox
+    MoveScaled(2,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox11 PictureBox
+    MoveScaled(2,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { btn_wifi PictureBox
+    MoveScaled(5,4,4,4)
+    Picture = Picture["wifi_enabled.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_bluetooth PictureBox
+    MoveScaled(5,11,4,4)
+    Picture = Picture["bluetooth_enabled.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_airplane PictureBox
+    MoveScaled(5,18,4,4)
+    Picture = Picture["airplane_enabled.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { PictureBox6 PictureBox
+    MoveScaled(36,2,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox7 PictureBox
+    MoveScaled(28,2,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox13 PictureBox
+    MoveScaled(32,2,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_wifi Label
+    MoveScaled(10,4,5,3)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Wi-Fi")
+  }
+  { lbl_wifi2 Label
+    MoveScaled(10,11,10,3)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Bluetooth")
+  }
+  { lbl_wifi3 Label
+    MoveScaled(10,18,14,3)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Airplane Mode")
+  }
+  { PictureBox8 PictureBox
+    MoveScaled(40,2,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox14 PictureBox
+    MoveScaled(44,2,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox15 PictureBox
+    MoveScaled(28,6,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox16 PictureBox
+    MoveScaled(32,6,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox17 PictureBox
+    MoveScaled(36,6,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox18 PictureBox
+    MoveScaled(40,6,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox19 PictureBox
+    MoveScaled(44,6,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_dnd Label
+    MoveScaled(37,5,10,7)
+    Font = Font["Bitstream,Bold"]
+    Alignment = Align.Center
+    Text = ("Do Not\nDisturb\n")
+  }
+  { PictureBox20 PictureBox
+    MoveScaled(28,14,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox21 PictureBox
+    MoveScaled(31,14,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox22 PictureBox
+    MoveScaled(28,17,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox23 PictureBox
+    MoveScaled(31,17,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox24 PictureBox
+    MoveScaled(41,14,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox25 PictureBox
+    MoveScaled(44,14,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox26 PictureBox
+    MoveScaled(41,17,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox27 PictureBox
+    MoveScaled(44,17,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox28 PictureBox
+    MoveScaled(6,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox29 PictureBox
+    MoveScaled(6,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox30 PictureBox
+    MoveScaled(10,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox31 PictureBox
+    MoveScaled(10,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox32 PictureBox
+    MoveScaled(14,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox33 PictureBox
+    MoveScaled(14,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox34 PictureBox
+    MoveScaled(17,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox35 PictureBox
+    MoveScaled(17,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox36 PictureBox
+    MoveScaled(20,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox37 PictureBox
+    MoveScaled(20,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox38 PictureBox
+    MoveScaled(24,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox39 PictureBox
+    MoveScaled(24,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox40 PictureBox
+    MoveScaled(28,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox41 PictureBox
+    MoveScaled(28,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox42 PictureBox
+    MoveScaled(32,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox43 PictureBox
+    MoveScaled(32,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox44 PictureBox
+    MoveScaled(36,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox45 PictureBox
+    MoveScaled(36,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox46 PictureBox
+    MoveScaled(40,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox47 PictureBox
+    MoveScaled(40,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox48 PictureBox
+    MoveScaled(44,31,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox49 PictureBox
+    MoveScaled(44,27,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_wifi5 Label
+    MoveScaled(5,29,8,3)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Display")
+  }
+  { slider_brightness Slider
+    MoveScaled(5,33,38,3)
+  }
+  { PictureBox52 PictureBox
+    MoveScaled(2,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox53 PictureBox
+    MoveScaled(2,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox54 PictureBox
+    MoveScaled(6,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox55 PictureBox
+    MoveScaled(6,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox56 PictureBox
+    MoveScaled(10,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox57 PictureBox
+    MoveScaled(10,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox58 PictureBox
+    MoveScaled(14,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox59 PictureBox
+    MoveScaled(14,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox60 PictureBox
+    MoveScaled(17,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox61 PictureBox
+    MoveScaled(17,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox62 PictureBox
+    MoveScaled(20,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox63 PictureBox
+    MoveScaled(20,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox64 PictureBox
+    MoveScaled(24,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox65 PictureBox
+    MoveScaled(24,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox66 PictureBox
+    MoveScaled(28,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox67 PictureBox
+    MoveScaled(28,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox68 PictureBox
+    MoveScaled(32,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox69 PictureBox
+    MoveScaled(32,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox70 PictureBox
+    MoveScaled(36,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox71 PictureBox
+    MoveScaled(36,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox72 PictureBox
+    MoveScaled(40,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox73 PictureBox
+    MoveScaled(40,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox74 PictureBox
+    MoveScaled(44,44,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox75 PictureBox
+    MoveScaled(44,40,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_wifi6 Label
+    MoveScaled(5,42,8,3)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Sound")
+  }
+  { slider_sound Slider
+    MoveScaled(5,46,38,3)
+  }
+  { PictureBox78 PictureBox
+    MoveScaled(2,53,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox79 PictureBox
+    MoveScaled(5,53,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { PictureBox82 PictureBox
+    MoveScaled(9,53,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_wifi_connected Label
+    MoveScaled(10,7,12,4)
+  }
+  { lbl_bluetooth_status Label
+    MoveScaled(10,14,12,4)
+  }
+  { PictureBox81 PictureBox
+    MoveScaled(13,53,7,7)
+    Picture = Picture["square.png"]
+    Mode = PictureBox.Contain
+  }
+  { lbl_wifi7 Label
+    MoveScaled(9,54,8,2)
+    Font = Font["Bitstream,Bold"]
+    Text = ("Battery")
+  }
+  { lbl_battery_value Label
+    MoveScaled(9,57,8,4)
+  }
+  { btn_power PictureBox
+    MoveScaled(29,15,8,8)
+    Picture = Picture["power.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_hide Button
+    MoveScaled(42,15,8,8)
+    Font = Font["Bitstream,+7"]
+    Foreground = Color.ButtonBackground
+    Text = ("X")
+    Border = False
+  }
+  { btn_dnd PictureBox
+    MoveScaled(30,4,6,7)
+    Picture = Picture["dnd_disabled.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_airplane2 PictureBox
+    MoveScaled(3,54,5,5)
+    Picture = Picture["battery.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_airplane3 PictureBox
+    MoveScaled(45,44,4,4)
+    Picture = Picture["sounduru.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { btn_airplane4 PictureBox
+    MoveScaled(45,31,4,4)
+    Picture = Picture["deskutopu.png"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { Timer1 #Timer
+    #MoveScaled(21,53)
+    Enabled = True
+    Delay = 100
+  }
+}

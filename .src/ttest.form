@@ -1,0 +1,25 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,50,64)
+  { PictureBox2 PictureBox
+    MoveScaled(22,17,8,9)
+    Picture = Picture["drawing.svg"]
+    Alignment = Align.Center
+    Mode = PictureBox.Contain
+  }
+  { lbl_about Label
+    MoveScaled(17,29,20,3)
+    Font = Font["Bold,+3"]
+    Text = ("Control Center")
+  }
+  { lbl_this_software Label
+    MoveScaled(3,52,50,6)
+    Text = ("This software is brought by you by Alexandru Balan")
+  }
+  { lbl_version Label
+    MoveScaled(23,32,6,3)
+    Font = Font["Bitstream Vera Sans Mono"]
+    Text = ("v11.1")
+  }
+}

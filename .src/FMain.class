@@ -1,0 +1,234 @@
+' Gambas class file
+
+Public monitorconnect As String ' declare a "monitor connection" string for sorting the display connection name
+Public drivers As String 'declare a "driver" string var for storing the driver install status
+Public xsettings As String 'declare an "xsettings" string for storing the nVidia X Settings install status
+Public synaptics As String 'declare a "fancontrol" string for storing the fancpntrol install status
+Public used As String 'declare an "used" string for storing the current used GPU
+Public wifistatus As String 'declare a "wifi" string fot storing the WIFI status
+Public bluetoothstatus As String 'declare a "bluetoothstatus" string for soring the Bluetooth status
+Public xdotool As String 'declare an "xdotool" string for storing the xdotool install status
+Public rfkill As String 'declare rfkill as string for storring the airplane mode active or not
+Public wifi_connected As String 'declare wifi_connected as string for storing current WIFI SSID
+Public sound_vol_int As Integer
+Public sound_vol_str As String
+Public battery As String 'battery percentage as String (why not lmao)
+Public dnd_enabled As Boolean
+Public dnd_str As String
+Public brightnessss As String 'declare brightness as String for storing current brightness value as String
+
+Public Sub Form_Open() '60 lines of dependency check, GPU querry, setting the tray and the default buttons state, I/O check(bl, wifi, etc.)
+
+ Dim s As String
+  Shell "dpkg -l | grep nvidia-settings" To xsettings 'sending command output into xsettings variable for later use
+  Shell "dpkg -l | grep nvidia-driver" To drivers 'sending command output into drivers variable for later use
+  Shell "dpkg -l | grep xserver-xorg-input-synaptics" To synaptics 'sending command output into synaptics variable for later use
+  Shell "xrandr | grep ' connected' | cut -f1 -d ' ' | tr -d '\n'" To monitorconnect
+  Shell "rfkill list | grep yes" To rfkill
+  Shell "prime-select query" 'letting programm know which GPU is the user usign
+  Shell "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | tr -d 'percentage' | tr -d ':' | tr -d ' '" To battery
+  Shell "nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d: -f2" To wifi_connected
+  Shell "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'" To sound_vol_str
+  Shell "gsettings get org.gnome.desktop.notifications show-banners" To dnd_str
+  Shell "xrandr --verbose | awk '/Brightness/ { print $2; exit }'" To brightnessss
+  
+  If dnd_str = "True" Then dnd_enabled = False
+  If dnd_str = "False" Then dnd_enabled = True
+  slider_brightness.Value = Val(brightnessss) * 100
+  
+  If dnd_enabled = True Then btn_dnd.Picture = Picture["dnd_enabled.png"]
+  If dnd_enabled = False Then btn_dnd.Picture = Picture["dnd_disabled.png"]
+  sound_vol_int = Val(sound_vol_str)
+  slider_sound.Value = sound_vol_int
+  lbl_wifi_connected.Text = wifi_connected
+  lbl_battery_value.Text = battery
+
+  ' If drivers = "" Then 'if the app is not installed, the variable will be empty, let's condition that
+  '   Message("nVidia drivers not detected!", "OK") 'showing a warning if the requirement is unmet
+  ' Endif 'endig the IF condition
+  ' If xsettings = "" Then 'if the app is not installed, the variable will be empty, let's condition that
+  '   Message("'nVidia X Server Settings' is not installed, you will not be able to use Hybrid Graphics!\nYou can install this by typing 'sudo apt intstall nvidia-settings'", "OK") 'showing a warning if the requirement is unmet
+  ' Endif 'endig the IF condition
+  ' If synaptics = "" Then 'if the app is not installed, the variable will be empty, let's condition that
+  '   Message("'xserver-xorg-input-synaptics' app is not installed, you will not be able to use Hybrid Graphics!\nYou can install this by typing 'sudo apt intstall xserver-xorg-input-synaptics'", "OK") 'showing a warning if the requirement is unmet
+  ' Endif 'ending the IF condition
+
+  Tray.Show 'enabling the system tray
+  Tray.Icon = Picture["laptopwithlinux.png"]  'setting a beautyful tray icon :)
+ 
+  'btn_touchpad.Picture = Picture["touchpad_enabled.png"]  'setting the default touchpad state (enabled or disabled)
+  
+  Shell "nmcli radio wifi" To wifistatus 'sending wifi status to the wifistat variable for later use
+  If wifistatus = "enabled\n" Then 'if the wifi status is enabled:
+    btn_wifi.Picture = Picture["wifi_enabled.png"] 'set the button state as enabled
+  Endif 'ending the If statement
+  If wifistatus = "disabled\n" Then 'new If, I could use Else If but why, If I can use this instead?
+    btn_wifi.Picture = Picture["wifi_disabled.png"] 'set the button state as disabled
+  Endif 'ending the If statement
+  Print wifistatus 'print for debug reasons
+  
+  Shell "systemctl is-enabled bluetooth" To bluetoothstatus 'sending bluetooth status to the bluetoothstatus variable for later use
+  If bluetoothstatus = "enabled\n" Then 'if the bluetooth is enabled:
+    btn_bluetooth.Picture = Picture["bluetooth_enabled.png"] 'set the button state as enabled
+  Endif 'ending the If statement
+  If bluetoothstatus = "disabled\n" Then 'new If, I could use Else If but why, If I can use this instead?
+    btn_bluetooth.Picture = Picture["bluetooth_disabled.png"] 'set the button state as disabled
+  Endif 'ending the If statement
+  Print bluetoothstatus 'print for debug
+  If rfkill = "" Then
+    btn_airplane.Picture = Picture["airplane_disabled.png"] 'if it s not on, the button will loog gray(or grey?) Semi white is better :p
+  Else 
+  btn_airplane.Picture = Picture["airplane_enabled.png"] 'setting the Airplane ON icn if the airplane is really ON 
+Endif
+  Me.Move(Desktop.W - Me.W, 0)
+End 'ending the on-launch function. A small resume: dependency check, GPU querry, setting the tray and the default buttons state, I/O check(bl, wifi, etc.)
+
+Public Sub Tray_Click() 'This is an event that triggers when the user clicks the Tray Icon (nice icon btw)
+    Timer1.Enabled = False
+    Me.Show 'when the user clicks the Tray Icon, the main Form will be shown
+End 'ending the tray button event
+
+Public Sub btn_hide_Click() 'on exit button event:
+  Me.Hide 'hides the form. This will trick the user into thinking he closed the app, but aactually, he just minimized to tray. Sorry, users :)))
+End 'ending the exit button event
+
+'Public Sub lbl_nvidia_MouseDown() 'nvidia select button event
+    'chk_nvidia.Text = ">"
+    'chk_intel.Text = " "
+    'Shell "pkexec prime-select nvidia"
+'End 'ending the nvidia select button event
+
+'Public Sub lbl_intel_MouseDown() 'intel select button event
+    'chk_intel.Text = ">"
+    'chk_nvidia.Text = " "
+   ' Shell "pkexec prime-select intel"
+'End
+
+
+'Public Sub chk_nvidia_Click() 'TODO::hybrid graphics: select nvidia
+      'chk_nvidia.Text = ">"
+      'chk_intel.Text = " "
+      'Shell "pkexec prime-select nvidia"
+'End
+
+'Public Sub chk_intel_Click() 'TODO::hybrid graphics: select intel
+    'chk_nvidia.Text = " "
+    'chk_intel.Text = ">"
+    'Shell "pkexec prime-select nvidia"
+'End
+
+'Public Sub slider_keylight_Change() 'defining the Slide Bar change
+'  Print slider_keylight.Value 'this print is just for debug purposes
+'  Print "sudo tee /etc/modprobe.d/clevo-xsm-wmi.conf <<< 'options clevo-xsm-wmi kb_color=white,white,white, kb_brightness=" & slider_keylight.Value & "'" 'this will execute the value of the slider
+'End 'ending the Slider change event
+
+'Public Sub btn_touchpad_MouseDown() 'touchpad enabler/disabler event
+  'If btn_touchpad.Picture = Picture["touchpad_enabled.png"] Then 'making a mechanical switch for the button because I did not learn how to use icons in real buttons, sorry
+  'btn_touchpad.Picture = Picture["touchpad_disabled.png"] 'changing the touchpad button state to disabled, just if it was enabled (and it was enabled by default in the Launch function)
+  'Shell "synclient TouchpadOff=1" 'this will execute the touchpad OFF command
+   'Else If btn_touchpad.Picture = Picture["touchpad_disabled.png"] Then 'opposite condition: if the button state is disabled, change it to enabled (and it is disabled, declared before by the button press event)
+        'btn_touchpad.Picture = Picture["touchpad_enabled.png"] 'changing the touchpad button state from disabled to enabled, if the condition is satisfied (and it is)
+        'Shell "synclient TouchpadOff=0" 'this will execute the touchpad ON/ENABLED command
+   'Endif 'ending the IF condition
+'End 'ending the touchpad enabler event
+
+Public Sub btn_wifi_MouseDown() 'wifi enabler/disabler event
+  If btn_wifi.Picture = Picture["wifi_enabled.png"] Then 'making a mechanical switch for the button
+  Shell "nmcli radio wifi off" Wait 'this will execute the Wi-Fi OFF command
+  lbl_wifi_connected.Visible = False
+  btn_wifi.Picture = Picture["wifi_disabled.png"] 'changing the wifi button state to disabled, just if it was enabled (and it was enabled by default in the Launch function)
+    Else If btn_wifi.Picture = Picture["wifi_disabled.png"] Then 'opposite condition: if the button state is disabled, change it to enabled (and it is disabled, declared before by the button press event)
+        Shell "nmcli radio wifi on" Wait 'this will execute the wifi ON/ENABLED command
+        btn_wifi.Picture = Picture["wifi_enabled.png"] 'changing the wifi button state from disabled to enabled, if the condition is satisfied (and it is)
+        lbl_wifi_connected.Visible = True
+   Endif 'ending the IF condition
+End 'ending the wifi enabler event
+
+Public Sub btn_bluetooth_MouseDown() 'bluetooth enable/disable event
+  If btn_bluetooth.Picture = Picture["bluetooth_enabled.png"] Then 'making a mechanical switch for the button
+  Shell "pkexec systemctl disable bluetooth" Wait 'this will execute the Wi-Fi OFF command
+  btn_bluetooth.Picture = Picture["bluetooth_disabled.png"] 'changing the bluetooth button state to disabled, just if it was enabled (and it was enabled by default in the Launch function)
+    Else If btn_bluetooth.Picture = Picture["bluetooth_disabled.png"] Then 'opposite condition: if the button state is disabled, change it to enabled (and it is disabled)
+        Shell "pkexec systemctl enable bluetooth" Wait 'this will execute the wifi ON/ENABLED command
+        btn_bluetooth.Picture = Picture["bluetooth_enabled.png"] 'changing the wifi button state from disabled to enabled, if the condition is satisfied (and it is)
+        
+   Endif 'ending the IF condition
+End 'ending the bluetooth switcher event
+
+Public Sub slider_brightness_Change() 'define the Brightness bar change
+Dim corrected_brightness As Float = slider_brightness.Value / 100
+  Shell "xrandr --output " & monitorconnect & " --brightness " & corrected_brightness
+End
+
+Public Sub slider_sound_Change() 'define the Brightness bar change
+Dim corrected_sound As Float = slider_sound.Value / 1
+  Shell "amixer -D pulse sset Master " & corrected_sound & "%"
+End
+
+
+
+Public Sub lbl_dnd_MouseDown()
+
+  
+
+End
+Public Sub btn_airplane_MouseDown() 'airplane mode on/off switch
+  If btn_airplane.Picture = Picture["airplane_enabled.png"] Then 'making a mechanical switch for the button
+  Shell "pkexec rfkill unblock all" Wait 'this will execute the airplane OFF command
+  btn_airplane.Picture = Picture["airplane_disabled.png"] 'changing the airplane button state to disabled, just if it was enabled (and it was enabled by default in the Launch function)
+  btn_wifi.Picture = Picture["wifi_enabled.png"] 'set the button state as enabled
+    Else If btn_airplane.Picture = Picture["airplane_disabled.png"] Then 'opposite condition: if the button state is disabled, change it to enabled (and it is disabled)
+        Shell "pkexec rfkill block all" Wait 'this will execute the airplane ON/ENABLED command
+        btn_airplane.Picture = Picture["airplane_enabled.png"] 'changing the airplane button state from disabled to enabled, if the condition is satisfied (and it is)
+        btn_wifi.Picture = Picture["wifi_disabled.png"] 'set the button state as disabled
+        btn_bluetooth.Picture = Picture["bluetooth_disabled.png"] 'set the button state as enabled
+        lbl_bluetooth_status.Text = "Off"
+        lbl_wifi_connected.Visible = False
+   Endif 'ending the IF condition
+
+
+    
+ If bluetoothstatus = "enabled\n" Then 'if the bluetooth is enabled:
+    btn_bluetooth.Picture = Picture["bluetooth_enabled.png"] 'set the button state as enabled
+    lbl_bluetooth_status.Text = "On"
+  Endif 'ending the If statement
+  If bluetoothstatus = "disabled\n" Then 'new If, I could use Else If but why, If I can use this instead?
+    btn_bluetooth.Picture = Picture["bluetooth_disabled.png"] 'set the button state as disabled
+    lbl_bluetooth_status.Text = "Off"
+  Endif 'ending the If statement
+End 'ending the airplane enabler event
+
+Public Sub btn_dnd_MouseDown()
+
+  If dnd_enabled = True Then
+    Shell "gsettings set org.gnome.desktop.notifications show-banners false"
+    dnd_enabled = False
+    btn_dnd.Picture = Picture["dnd_disabled.png"] 
+    Else
+      Shell "gsettings set org.gnome.desktop.notifications show-banners true"
+      dnd_enabled = True
+      btn_dnd.Picture = Picture["dnd_enabled.png"]
+  Endif
+End
+
+
+Public Sub Close_Application_Click()
+Quit
+End
+Public Sub btn_power_MouseDown()
+  Shell "qdbus org.kde.ksmserver /KSMServer logout 1 3 3"
+End
+
+Public Sub mnuAbout_Click()
+  ttest.Show
+End
+
+Public Sub Timer1_Timer()
+  Me.Hide
+End
+
+Public Sub mnuOpen_Click()
+
+  Tray_Click()
+
+End
