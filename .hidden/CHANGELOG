@@ -1,3 +1,7 @@
 * Fri Mar 05 2021 Alexandru Balan <alex@pearos.xyz> 1.0.13
 - Initial release
 
+* Fri Apr 02 2021 Alexandru Balan <alex@pearos.xyz> 11.1.0
+- Updated the version
+- Bug fixex
+- When you open the PC, now, the app stays closed and does not pop out everytime you boot
