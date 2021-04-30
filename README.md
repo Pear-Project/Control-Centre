@@ -32,7 +32,7 @@ Light mode
    ```
    - copy xyz.pearos.control-centre.desktop from the cloned repository to the autostart folder
    ```sh
-   $ cp -r ~/Control-Centre/xyz.pearos.control-centre ~/.config/autostart
+   $ cp -r ~/Control-Centre/xyz.pearos.control-centre.desktop ~/.config/autostart
    # this was an example for adding autostart script to KDE based system
    ```
    - Enjoy :p
